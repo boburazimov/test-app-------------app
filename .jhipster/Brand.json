@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20220531140438",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "brand",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "40"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Brand",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "brand",
+      "otherEntityRelationshipName": "brand",
+      "relationshipName": "parent",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

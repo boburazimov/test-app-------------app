@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20220531140436",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "attachment",
+  "fields": [
+    {
+      "fieldName": "path",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "originalFileName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fileName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "contentType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fileSize",
+      "fieldType": "Long"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Attachment",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}
