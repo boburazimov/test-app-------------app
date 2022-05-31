@@ -1,0 +1,97 @@
+{
+  "applications": "*",
+  "changelogDate": "20220531133919",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "product",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "vendorCode",
+      "fieldType": "String",
+      "javadoc": "VendorCode - Article"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "top",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "vatRate",
+      "fieldType": "Double",
+      "javadoc": "vatRate - ставка НДС"
+    },
+    {
+      "fieldName": "madeIn",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "info",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "GeneralStatusEnum",
+      "fieldTypeJavadoc": "GeneralStatusEnum enum - общий константа для таблиц,\\nактив и не актив.\\n@author Bobur Azimov.",
+      "fieldValues": "ACTIVE,INACTIVE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Product",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "brand",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "brand",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "attachment",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "photo",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "category",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "category",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "group",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "group",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "unit",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "unit",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
