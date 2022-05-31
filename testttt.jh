@@ -1,0 +1,265 @@
+enum CatalogNameEnum {
+	PARTNER,
+    USER,
+    WAREHOUSE,
+    PRODUCT
+}
+
+/**
+ * PartnerTypeEnum enum - поставщик или клиент.
+ * @author Bobur Azimov.
+ */
+enum PartnerTypeEnum {
+	CUSTOMER, SUPPLIER
+}
+
+enum GenderEnum {
+	MALE, FAMALE
+}
+
+/**
+* GeneralStatusEnum enum - общий константа для таблиц,
+* актив и не актив.
+* @author Bobur Azimov.
+*/
+enum GeneralStatusEnum {
+	ACTIVE, INACTIVE
+}
+
+entity Company {
+	name String required maxlength(20) unique,
+    info String maxlength(200)
+}
+
+
+// entity User {
+//	fullName String required maxlength(99),
+//    code String required maxlength(10),
+//    nickName String required minlength(1) maxlength(40) unique,
+//    phoneNumber String minlength(12) maxlength(13) unique,
+//    /** Password_Hash */
+//    password String required minlength(60) maxlength(60),
+//    email String minlength(5) maxlength(254) unique,
+//    activated Boolean required,
+//    activationKey String maxlength(20),
+//    resetKey String maxlength(20),
+//    info String maxlength(200)
+//}
+
+entity Position {
+	name String required maxlength(40) unique,
+    info String maxlength(200),
+}
+
+//relationship ManyToOne {
+//	User{group} to Group,
+//    User{position} to Position,
+//    User{company} to Company
+//}
+
+entity Partner {
+	phonenumber String required maxlength(13),
+    code String required maxlength(10),
+    firstName String maxlength(20),
+    lastName String maxlength(20),
+    gender GenderEnum,
+    age Integer min(16) max(100),
+    isBlocked Boolean,
+    parnerType PartnerTypeEnum,
+    inn Integer min(9) max(9),
+    pinfl Integer min(14) max(14),
+}
+
+entity Group{
+	name String required maxlength(33),
+    info String maxlength(200),
+    catalog CatalogNameEnum
+}
+
+entity Address {
+	streetAdress String maxlength(200),
+    longitude String,
+    latitude String,
+    zipcode String,
+    info String maxlength(200)
+}
+
+entity District {
+	name String required maxlength(20) unique,
+    info String maxlength(200)
+}
+
+entity City {
+	name String required maxlength(20) unique,
+    info String maxlength(200)
+}
+
+entity Region {
+	name String required maxlength(20) unique,
+    info String maxlength(200)
+}
+
+entity Social {
+	name String required maxlength(20) unique,
+    info String maxlength(200)
+}
+
+entity City {
+	name String required maxlength(20) unique
+}
+
+entity Region {
+	regionName String required maxlength(20) unique
+}
+
+entity Country {
+	countryName String required maxlength(20) unique
+}
+
+/**
+* Warehouse entity - Справочник складов
+* @author Bobur Azimov.
+*/
+entity Warehouse {
+	name String required maxlength(40) unique,
+    code String required maxlength(10),
+    isRetail Boolean,
+    isStockControl Boolean,
+    address String maxlength(200),
+    info String maxlength(200)
+}
+
+/**
+* PriceType entity - Виды прайсов оптовая или рознич.
+* @author Bobur Azimov.
+*/
+entity PriceType {
+	name String required maxlength(40) unique,
+    //** inludeVat - Цена включает НДС */
+    includeVat Boolean,
+    status GeneralStatusEnum,
+    info String maxlength(200)
+}
+
+/**
+* Currency entity - валюта
+* @author Bobur Azimov
+*/
+entity Currency {
+	name String required maxlength(30) unique,
+    symbolCode String required maxlength(3) unique,
+}
+
+entity Attachment {
+	path String,
+    originalFileName String,
+    fileName String,
+    contentType String,
+    fileSize Long
+}
+
+entity Product {
+	name String required maxlength(40) unique,
+    description String maxlength(200),
+    /** VendorCode - Article */
+    vendorCode String,
+    code String required maxlength(10),
+    top Boolean,
+    /** vatRate - ставка НДС */
+    vatRate Double,
+    madeIn String maxlength(30),
+    info String maxlength(200),
+    status GeneralStatusEnum
+}
+
+entity Brand {
+	name String required maxlength(40) unique,
+}
+
+entity Category {
+	name String required maxlength(30) unique,
+    info String maxlength(100)
+}
+
+/** entity Unit - Единица измирения */
+entity Unit {
+	name String required maxlength(10) unique,
+    description String maxlength(150)
+}
+
+entity Barcode {
+	code String required unique
+}
+
+relationship ManyToOne {
+	PriceType{group} to Group
+}
+
+relationship ManyToOne {
+	Warehouse{manager} to User
+    Warehouse{priceType} to PriceType
+    Warehouse{group} to Group
+}
+
+relationship ManyToOne {
+	Group{parent} to Group
+}
+
+relationship ManyToOne {
+	Partner{group} to Group
+    Position{group} to Group
+}
+
+relationship ManyToOne {
+	Partner{manager} to User
+}
+
+relationship ManyToOne {
+	District{city} to City
+}
+
+relationship ManyToOne {
+	City{region} to Region
+}
+
+relationship ManyToOne {
+	Address{region} to Region,
+    Address{city} to City,
+    Address{district} to District,
+    Address{partner} to Partner
+}
+
+relationship ManyToOne {
+	Partner{social} to Social
+}
+
+relationship ManyToOne {
+	PriceType{currency} to Currency
+}
+
+relationship ManyToOne {
+	Brand{parent} to Brand,
+    Category{parent} to Category
+}
+
+relationship ManyToOne {
+	Product{brand} to Brand
+    Product{photo} to Attachment
+    Product{category} to Category
+    Product{group} to Group
+    Product{unit} to Unit
+}
+
+relationship ManyToOne {
+	Barcode{product} to Product
+}
+
+// Set pagination options
+paginate Partner, Category with pagination
+paginate Address, Product with infinite-scroll
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
