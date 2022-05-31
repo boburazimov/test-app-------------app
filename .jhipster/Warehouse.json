@@ -1,0 +1,68 @@
+{
+  "applications": "*",
+  "changelogDate": "20220531135956",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "warehouse",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "isRetail",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isStockControl",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "info",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Warehouse entity - Справочник складов\\n@author Bobur Azimov.",
+  "jpaMetamodelFiltering": false,
+  "name": "Warehouse",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "warehouse",
+      "relationshipName": "manager",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "priceType",
+      "otherEntityRelationshipName": "warehouse",
+      "relationshipName": "priceType",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "group",
+      "otherEntityRelationshipName": "warehouse",
+      "relationshipName": "group",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
