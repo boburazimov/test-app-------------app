@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Warehouse.
+    -->
+    <changeSet id="20220531140433-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="price_type_id"
+                                 baseTableName="warehouse"
+                                 constraintName="fk_warehouse__price_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="price_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="group_id"
+                                 baseTableName="warehouse"
+                                 constraintName="fk_warehouse__group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_group"/>
+    </changeSet>
+</databaseChangeLog>

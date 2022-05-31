@@ -1,0 +1,52 @@
+{
+  "applications": "*",
+  "changelogDate": "20220531140434",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "price_type",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "40"
+    },
+    {
+      "fieldName": "includeVat",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "GeneralStatusEnum",
+      "fieldTypeJavadoc": "GeneralStatusEnum enum - общий константа для таблиц,\\nактив и не актив.\\n@author Bobur Azimov.",
+      "fieldValues": "ACTIVE,INACTIVE"
+    },
+    {
+      "fieldName": "info",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "PriceType entity - Виды прайсов оптовая или рознич.\\n@author Bobur Azimov.",
+  "jpaMetamodelFiltering": false,
+  "name": "PriceType",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "group",
+      "otherEntityRelationshipName": "priceType",
+      "relationshipName": "group",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "currency",
+      "otherEntityRelationshipName": "priceType",
+      "relationshipName": "currency",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

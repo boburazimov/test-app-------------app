@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Partner.
+    -->
+    <changeSet id="20220531140425-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="group_id"
+                                 baseTableName="partner"
+                                 constraintName="fk_partner__group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_group"/>
+
+        <addForeignKeyConstraint baseColumnNames="social_id"
+                                 baseTableName="partner"
+                                 constraintName="fk_partner__social_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="social"/>
+    </changeSet>
+</databaseChangeLog>

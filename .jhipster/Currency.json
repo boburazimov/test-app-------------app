@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20220531140435",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "currency",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "symbolCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "3"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Currency entity - валюта\\n@author Bobur Azimov",
+  "jpaMetamodelFiltering": false,
+  "name": "Currency",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

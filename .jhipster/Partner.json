@@ -1,0 +1,89 @@
+{
+  "applications": "*",
+  "changelogDate": "20220531140425",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "partner",
+  "fields": [
+    {
+      "fieldName": "phonenumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "13"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "GenderEnum",
+      "fieldValues": "MALE,FAMALE"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "100",
+      "fieldValidateRulesMin": "16"
+    },
+    {
+      "fieldName": "isBlocked",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "partnerType",
+      "fieldType": "PartnerTypeEnum",
+      "fieldTypeJavadoc": "PartnerTypeEnum enum - поставщик или клиент.\\n@author Bobur Azimov.",
+      "fieldValues": "CUSTOMER,SUPPLIER"
+    },
+    {
+      "fieldName": "inn",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "9",
+      "fieldValidateRulesMin": "9"
+    },
+    {
+      "fieldName": "pinfl",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "14",
+      "fieldValidateRulesMin": "14"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Partner",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "group",
+      "otherEntityRelationshipName": "partner",
+      "relationshipName": "group",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "social",
+      "otherEntityRelationshipName": "partner",
+      "relationshipName": "social",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

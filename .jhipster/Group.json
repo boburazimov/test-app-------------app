@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20220531140426",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "jhi_group",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "33"
+    },
+    {
+      "fieldName": "info",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "catalog",
+      "fieldType": "CatalogNameEnum",
+      "fieldValues": "PARTNER,USER,WAREHOUSE,PRODUCT"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Group",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "group",
+      "otherEntityRelationshipName": "group",
+      "relationshipName": "parent",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
